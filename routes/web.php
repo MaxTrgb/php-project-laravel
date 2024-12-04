@@ -3,6 +3,7 @@
 use App\Http\Controllers\MainController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ReviewController;
+use App\Http\Controllers\CategoryController;
 
 /*
 |--------------------------------------------------------------------------
@@ -23,3 +24,5 @@ Route::post('send-email', [MainController::class,'sendEmail'])->name('sendEmail'
 
 Route::get('/reviews', [ReviewController::class, 'showForm'])->name('reviews.form');
 Route::post('/reviews', [ReviewController::class, 'submitForm'])->name('reviews.submit');
+
+Route::resource('admin/categories', CategoryController::class);
