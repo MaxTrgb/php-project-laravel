@@ -30,6 +30,9 @@
                     <li class="nav-item">
                         <a class="nav-link active" aria-current="page" href="{{ route('reviews.form')}}">Reviews</a>
                     </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="{{ route('categories.index')}}">Categories</a>
+                    </li>
                 </ul>
             </div>
         </div>
