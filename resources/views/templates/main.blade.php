@@ -28,7 +28,7 @@
                         <a class="nav-link active" aria-current="page" href="{{ route('contacts')}}">Contacts</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="{{ route('reviews.form')}}">Reviews</a>
+                        <a class="nav-link active" aria-current="page" href="{{ route('reviews.index')}}">Reviews</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link active" aria-current="page" href="{{ route('categories.index')}}">Categories</a>

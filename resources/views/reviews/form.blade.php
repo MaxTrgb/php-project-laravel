@@ -15,7 +15,7 @@
         </ul>
     @endif
 
-    <form action="{{ route('reviews.submit') }}" method="POST">
+    <form action="{{ route('reviews.store') }}" method="POST">
         @csrf
 
         <div>
@@ -52,4 +52,39 @@
 
         <button type="submit" class="btn btn-primary">Submit</button>
     </form>
+
+    <h2>Existing Reviews</h2>
+    @if ($reviews->isEmpty())
+        <p>No reviews yet. Be the first to leave one!</p>
+    @else
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Email</th>
+                    <th>Message</th>
+                    <th>Rating</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach ($reviews as $review)
+                <tr>
+                    <td>{{ $review->name }}</td>
+                    <td>{{ $review->email }}</td>
+                    <td>{{ $review->message }}</td>
+                    <td>{{ $review->rate }}</td>
+                    <td>
+                        <a href="{{ route('reviews.edit', $review->id) }}" class="btn btn-sm btn-warning">Edit</a>
+                        <form action="{{ route('reviews.destroy', $review->id) }}" method="POST" style="display:inline;">
+                            @csrf
+                            @method('DELETE')
+                            <button type="submit" class="btn btn-sm btn-danger">Delete</button>
+                        </form>
+                    </td>
+                </tr>
+                @endforeach
+            </tbody>
+        </table>
+    @endif
 @endsection

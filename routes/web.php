@@ -18,11 +18,14 @@ use App\Http\Controllers\CategoryController;
 
 Route::get('/', [MainController::class, 'index'])->name('home');
 
-Route::get('contacts', [MainController::class,'contacts'])->name('contacts');
+Route::get('contacts', [MainController::class, 'contacts'])->name('contacts');
 
-Route::post('send-email', [MainController::class,'sendEmail'])->name('sendEmail');
+Route::post('send-email', [MainController::class, 'sendEmail'])->name('sendEmail');
 
-Route::get('/reviews', [ReviewController::class, 'showForm'])->name('reviews.form');
-Route::post('/reviews', [ReviewController::class, 'submitForm'])->name('reviews.submit');
+Route::get('/reviews', [ReviewController::class, 'index'])->name('reviews.index');
+Route::post('/reviews', [ReviewController::class, 'store'])->name('reviews.store');
+Route::get('/reviews/{id}/edit', [ReviewController::class, 'edit'])->name('reviews.edit');
+Route::put('/reviews/{id}', [ReviewController::class, 'update'])->name('reviews.update');
+Route::delete('/reviews/{id}', [ReviewController::class, 'destroy'])->name('reviews.destroy');
 
 Route::resource('admin/categories', CategoryController::class);

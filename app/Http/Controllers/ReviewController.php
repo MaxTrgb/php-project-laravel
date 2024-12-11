@@ -3,15 +3,24 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Review;
 
 class ReviewController extends Controller
 {
-    public function showForm()
+    public function index()
     {
-        return view('reviews.form');
+        $reviews = Review::all();
+        return view('reviews.form', compact('reviews'));
     }
 
-    public function submitForm(Request $request)
+
+
+    public function create()
+    {
+        return view('reviews.create');
+    }
+
+    public function store(Request $request)
     {
         $validated = $request->validate([
             'name' => 'required|min:3',
@@ -20,16 +29,37 @@ class ReviewController extends Controller
             'rate' => 'required|integer|between:1,5',
         ]);
 
-        $to = 'example@example.com';
-        $subject = 'New Review Submission';
-        $body = "Name: {$validated['name']}\nEmail: {$validated['email']}\nMessage: {$validated['message']}\nRating: {$validated['rate']}/5";
-        $headers = "From: {$validated['email']}";
+        Review::create($validated);
 
-        if (mail($to, $subject, $body, $headers)) {
-            return redirect('/reviews')->with('success', 'Review submitted successfully!');
-        } else {
-            return redirect('/reviews')->with('error', 'Failed to send email.');
-        }
+        return redirect('/reviews')->with('success', 'Review added successfully!');
     }
 
+    public function edit($id)
+    {
+        $review = Review::findOrFail($id);
+        return view('reviews.edit', compact('review'));
+    }
+
+    public function update(Request $request, $id)
+    {
+        $validated = $request->validate([
+            'name' => 'required|min:3',
+            'email' => 'required|email',
+            'message' => 'required|min:3',
+            'rate' => 'required|integer|between:1,5',
+        ]);
+
+        $review = Review::findOrFail($id);
+        $review->update($validated);
+
+        return redirect('/reviews')->with('success', 'Review updated successfully!');
+    }
+
+    public function destroy($id)
+    {
+        $review = Review::findOrFail($id);
+        $review->delete();
+
+        return redirect('/reviews')->with('success', 'Review deleted successfully!');
+    }
 }
