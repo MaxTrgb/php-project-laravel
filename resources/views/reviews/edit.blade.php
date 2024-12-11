@@ -35,6 +35,6 @@
             <input type="number" name="rate" min="1" max="5" value="{{ old('rate', $review->rate) }}" class="form-control">
         </div>
 
-        <button type="submit" class="btn btn-primary">Update</button>
+        <button type="submit" class="btn btn-primary" style="margin-top: 20px">Update</button>
     </form>
 @endsection

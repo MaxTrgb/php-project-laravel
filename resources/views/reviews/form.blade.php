@@ -15,12 +15,13 @@
         </ul>
     @endif
 
-    <form action="{{ route('reviews.store') }}" method="POST">
+    <form action="{{ route('reviews.store') }}" method="POST" style="margin-bottom: 20px">
         @csrf
 
         <div>
             <label for="name">Name:</label>
-            <input type="text" name="name" value="{{ old('name') }}" class="form-control @error('name') is-invalid @enderror">
+            <input type="text" name="name" value="{{ old('name') }}"
+                class="form-control @error('name') is-invalid @enderror">
             @error('name')
                 <div class="invalid-feedback">{{ $message }}</div>
             @enderror
@@ -28,7 +29,8 @@
 
         <div>
             <label for="email">Email:</label>
-            <input type="email" name="email" value="{{ old('email') }}" class="form-control @error('email') is-invalid @enderror">
+            <input type="email" name="email" value="{{ old('email') }}"
+                class="form-control @error('email') is-invalid @enderror">
             @error('email')
                 <div class="invalid-feedback">{{ $message }}</div>
             @enderror
@@ -44,13 +46,14 @@
 
         <div>
             <label for="rate">Rate (1-5):</label>
-            <input type="number" name="rate" min="1" max="5" value="{{ old('rate') }}" class="form-control @error('rate') is-invalid @enderror">
+            <input type="number" name="rate" min="1" max="5" value="{{ old('rate') }}"
+                class="form-control @error('rate') is-invalid @enderror">
             @error('rate')
                 <div class="invalid-feedback">{{ $message }}</div>
             @enderror
         </div>
 
-        <button type="submit" class="btn btn-primary">Submit</button>
+        <button type="submit" class="btn btn-primary" style="margin-top: 20px">Submit</button>
     </form>
 
     <h2>Existing Reviews</h2>
@@ -69,20 +72,21 @@
             </thead>
             <tbody>
                 @foreach ($reviews as $review)
-                <tr>
-                    <td>{{ $review->name }}</td>
-                    <td>{{ $review->email }}</td>
-                    <td>{{ $review->message }}</td>
-                    <td>{{ $review->rate }}</td>
-                    <td>
-                        <a href="{{ route('reviews.edit', $review->id) }}" class="btn btn-sm btn-warning">Edit</a>
-                        <form action="{{ route('reviews.destroy', $review->id) }}" method="POST" style="display:inline;">
-                            @csrf
-                            @method('DELETE')
-                            <button type="submit" class="btn btn-sm btn-danger">Delete</button>
-                        </form>
-                    </td>
-                </tr>
+                    <tr>
+                        <td>{{ $review->name }}</td>
+                        <td>{{ $review->email }}</td>
+                        <td>{{ $review->message }}</td>
+                        <td>{{ $review->rate }}</td>
+                        <td>
+                            <a href="{{ route('reviews.edit', $review->id) }}" class="btn btn-sm btn-warning">Edit</a>
+                            <form action="{{ route('reviews.destroy', $review->id) }}" method="POST"
+                                style="display:inline;">
+                                @csrf
+                                @method('DELETE')
+                                <button type="submit" class="btn btn-sm btn-danger">Delete</button>
+                            </form>
+                        </td>
+                    </tr>
                 @endforeach
             </tbody>
         </table>
