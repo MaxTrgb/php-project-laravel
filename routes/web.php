@@ -4,6 +4,7 @@ use App\Http\Controllers\MainController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ReviewController;
 use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\ProductController;
 
 /*
 |--------------------------------------------------------------------------
@@ -27,5 +28,7 @@ Route::post('/reviews', [ReviewController::class, 'store'])->name('reviews.store
 Route::get('/reviews/{id}/edit', [ReviewController::class, 'edit'])->name('reviews.edit');
 Route::put('/reviews/{id}', [ReviewController::class, 'update'])->name('reviews.update');
 Route::delete('/reviews/{id}', [ReviewController::class, 'destroy'])->name('reviews.destroy');
+
+Route::resource('admin/products', ProductController::class);
 
 Route::resource('admin/categories', CategoryController::class);

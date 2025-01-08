@@ -22,5 +22,16 @@ class Category extends Model
             get: fn(mixed $value, array $attributes) => Str::words($attributes['description'], 5, '...'),
         );
     }
+    protected function image(): Attribute
+    {
+        return Attribute::make(
+            get: fn(mixed $value) => $value ? 'storage/' . $value : '/images/no-image.jpg'
+        );
+    }
+
+    public function products()
+    {
+        return $this->hasMany(Product::class);
+    }
  
 }

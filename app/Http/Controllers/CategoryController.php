@@ -39,6 +39,11 @@ class CategoryController extends Controller
         // $category->save();
 
         $category = Category::create($request->all());
+        if ($request->image) {
+            $file = $request->file('image')->store('categories');
+            $category->image = $file;
+            $category->save();
+        }
 
         return redirect()->route('categories.index');
     }

@@ -3,7 +3,7 @@
 @section('content')
     <h1>Create Category</h1>
 
-    <form action="{{ route('categories.store') }}" method="post">
+    <form action="{{ route('categories.store') }}" method="post" enctype="multipart/form-data">
         @csrf
         <div class="mb-3">
             <label for="name">Name:</label>

@@ -20,7 +20,7 @@
             @foreach ($categories as $category)
             <tr>
                 <td>{{$loop->iteration}}</td>
-                <td>{{$category->image}}</td>
+                <td><img src="{{asset($category->image)}}" alt="" width="100"></td>
                 <td>{{$category->name}}</td>
                 <td>{{$category->short_description}}</td>
                 <td>
